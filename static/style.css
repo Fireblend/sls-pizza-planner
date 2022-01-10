@@ -1,0 +1,119 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #c5604c;
+    color:#e2e2e2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+#left {  
+    flex: 3;
+}
+#right {  
+    flex: 2;
+}
+
+form {
+    margin:0
+}
+a {
+    color: #cececefb;
+}
+input {
+    border-style: solid;
+    border-width: 0px;
+    margin: 2px;
+    color: #e2e2e2;
+    background-color: #252525;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+p {
+    margin: 0;
+    margin-top: 12px;
+}
+
+h1,h2{
+    margin: 0px;
+}
+
+.container {
+    background-color: #3f3f3f;
+    padding: 15px;
+    padding-bottom: 25px;
+    border-radius: 4px;
+    margin: 10px;
+    min-width: 350px;
+    position: relative;
+}
+
+.numberin {
+    width: 30px;    
+}
+
+.btn {
+    font-size : 30px;
+    padding: 20px;
+}
+
+.daytitle {
+    margin-left: 10px;
+    margin-top: 18px;
+    font-weight: bold;
+}
+.item {
+    margin-left: 20px;
+}
+
+hr{
+    background-color: #eee;
+    border: 0 none;
+    color: #e2e2e2;
+    height: 1px;
+    margin-bottom: 20px;
+    width: 50%;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #e2e2e2;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 350px;
+    background-color: black;
+    color: #e2e2e2;
+    text-align: center;
+    border-radius: 6px;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -225px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .corner {
+    margin: 20;
+    position: absolute;
+    top: 0;
+    right: 0;
+    }

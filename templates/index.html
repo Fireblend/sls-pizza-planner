@@ -1,0 +1,81 @@
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Pizza Planner</title>
+    <body>
+        <div class="column" id="left">
+        {% if form_data['type'] == 'original' %}
+            {% set originalchecked = 'checked' %}
+            {% set tweakedchecked = '' %}
+        {% else %}
+            {% set originalchecked = '' %}
+            {% set tweakedchecked = 'checked' %}
+        {% endif %}
+        <div class="container">
+            <center><h1>Pizza Planner</h1></center>
+            <hr>
+            {{strings.intro}} <a href="https://www.ilovecooking.ie/food-tv/patrick-ryans-no-fuss-sourdough-pizza/">{{strings.intro_link}}</a>.
+            <br>
+            <br>{{strings.made_by}} <a href="https://www.fireblend.com">Fireblend</a>.
+        </div>
+        <div class="container">
+            <center><h2>{{strings.setup}}</h2></center>
+            <hr>
+            <form method="POST">
+                <div class="corner">
+                    <a href="{{url_for('set_lang', language='en')}}"><b>EN</b></a> | 
+                    <a href="{{url_for('set_lang', language='es')}}"><b>ES</b></a> 
+                </div>
+                <label for="pizzas">{{strings.pizza_no1}}</label>
+                <input type="text" id="pizzas" name="pizzas" class="numberin" value="{{form_data.pizzas}}">{{strings.pizza_no2}}<br>
+                <label for="sour_time">{{strings.sour1}}</label>
+                <input type="text" id="sour_time" name="sour_time" class="numberin" value="{{form_data.sour_time}}">{{strings.sour2}}<br>
+                <label for="ferm_time">{{strings.ferment1}}</label>
+                <input type="text" id="ferm_time" name="ferm_time" class="numberin" value="{{form_data.ferm_time}}">{{strings.ferment2}}<br>
+                <label for="rest_time">{{strings.rest1}}</label>
+                <input type="text" id="rest_time" name="rest_time" class="numberin" value="{{form_data.rest_time}}">{{strings.rest2}}<br><br>
+                <label for="pizza_date">{{strings.datetime1}}</label>
+                <input type="date" id="pizza_date" name="pizza_date" value="{{form_data.pizza_date}}">{{strings.datetime2}}
+                <input type="time" id="pizza_time" name="pizza_time" value="{{form_data.pizza_time}}">.<br><br>
+                {{strings.ing_amounts}}
+                <div class="tooltip">(?)
+                    <span class="tooltiptext">{{strings.ing_amounts_tooltip}}</span>
+                  </div>:
+                  <br>
+                <input type="radio" id="original" name="type" value="original" {{originalchecked}}>
+                <label for="original">{{strings.ing_amounts_original}}</label><br>
+                <input type="radio" id="tweaked" name="type" value="tweaked" {{tweakedchecked}}>
+                <label for="tweaked">{{strings.ing_amounts_tweaked}}</label><br><br>
+                <center><input type="submit" class="btn" value="{{strings.btn}}"></center>
+            </form>
+        </div>
+    </div>
+    <div class="column" id="right">
+    <div class="container">
+        <center><h2>{{strings.ingredients_title}}</h2></center>
+        <hr>
+            {% for x in data.amounts %}
+            <p class="item">
+                <b>{{x.ingredient}}:</b> {{x.amount}} {{strings.ingredients_grams}}
+            </p> 
+            {% endfor %}
+        </div>
+        
+        <div class="container">
+            <center><h2>{{strings.schedule_title}}</h2></center>
+            <hr>
+            {% for day, values in data.schedule.items() %}
+            <p class="daytitle">{{day}}</p> 
+                {% for x in values %}
+                <p class="item"><b>- {{x.time}}:</b> {{x.step}}</p>
+                {% endfor %}
+            {% endfor %}
+        </div></div>
+
+    </body>
+
+</html>
